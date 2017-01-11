@@ -7,6 +7,14 @@ var	express = require('express'),
 var db_name = 'urlApp',
 	mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + db_name,
 	hostDomain = 'localhost:3000/';
+	
+if(process.env.MONGODB_URI){
+	mongodb_connection_string = process.env.MONGODB_URI;
+}
+
+if(process.env.THIS_DOMAIN) {
+	hostDomain = process.env.THIS_DOMAIN;
+}
 
 MongoClient.connect(mongodb_connection_string,function(err,db) {
 	
